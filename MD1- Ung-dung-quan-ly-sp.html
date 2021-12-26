@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{
+        width: 100%;
+        height: 300px;
+    }
+    button{
+        background: forestgreen;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #eee;
+    }
+    tr:nth-child(odd) {
+        background-color:#fff;
+    }
+</style>
+<body>
+<h3> Add New Product</h3>
+<input type="text" id="ten" >
+<button id="add" onclick="Add()" onchange="Add()"> Add</button>
+
+<h3>Display All Product</h3>
+<p><b>Product Name</b></p>
+<table >
+    <tbody id="ns">
+
+
+    </tbody>
+</table>
+
+<script>
+    let a = [" Sony Xperia", "Samsung Galaxy", "Nokia6","Xiaomi Redmi Note 4","Apple iPhone 6S", " Xiaomi Mi 5s Plus","Apple iPhone 8 Plus","Fujitsu F-04E","Oppo A71"]
+
+function taobang(){
+        let bang= '';
+        for (let i=0;i<a.length;i++){
+            bang+='<tr>'+
+                '<td>'+a[i]+'</td>'+
+                '<td>'+'<button onchange="edit()" onclick="edit('+i+')">'+ 'EDIT'+ '</button>'+'</td>'+
+                '<td>'+'<button onclick="deletel('+i+')">'+ 'DELETE'+ '</button>'+'</td>'+
+                '</tr>'
+        }
+        document.getElementById('ns').innerHTML=bang
+}
+taobang();
+
+    function Add() {
+        let newAdd = document.getElementById('ten').value
+
+        if (newAdd === ''){
+           alert('Vui lòng nhập lại')
+            return;
+
+        }
+        else {
+            a.push(newAdd);
+            document.getElementById('ten').innerHTML=''
+            taobang()
+        }
+
+    }
+    function edit(id){
+        let newEdit = prompt('Điền tên cần sửa',)
+        a[id] = newEdit;
+        taobang();
+    }
+
+
+    function deletel(id) {
+        a.splice(id,1);
+        alert('Bạn có chắc chắn muốn xóa')
+        taobang();
+    }
+</script>
+</body>
+</html>
